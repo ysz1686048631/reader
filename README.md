@@ -7,3 +7,5 @@
 * Axios ![iview](https://img.shields.io/badge/-V0.19.0-green)
 >> UI组件技术
 * Iview ![iview](https://img.shields.io/badge/-V3.5.4-green)
+---
+[![link to Reader]](http://47.93.54.147/)  
