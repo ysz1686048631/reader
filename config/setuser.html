@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./sass/_style.css"> 
+</head>
+<body>
+     
+     <div class="content">
+           <div class="from">
+                
+         
+            <div>
+                 <span>
+                     <i>*</i>
+                     用户名
+                 </span>
+                 <span>
+                     <input type="text" name="name" class="user">
+                     <i id="error"></i>
+                </span>
+            </div>
+            <div>
+                 <span>
+                    <i>*</i>
+                     密码
+                 </span>
+                 <span><input type="number" name="pwd" class="psd">
+                    <i id="error"></i>
+                </span>
+            </div>
+            <div>
+                 <span>
+                    <i>*</i>
+                     确认密码
+                 </span>
+                    <span>
+                        <input type="text" name="repwd" class="repsd">
+                        <i id="error"></i>
+                    </span>
+            </div>
+            <div>
+                <span>
+                    <i>*</i>性别
+                </span>
+                <span><input type="radio" name="sex" value="1" id="sex" checked>男<input type="radio" name="sex" value="0" id="sex">女</span>
+            </div>
+            <div>
+                <span>
+                    爱好
+                </span>
+                <span><input type="checkbox" name="hobbise">看书<input type="checkbox" name="hobbise">电影<input type="checkbox" name="hobbise">游戏</span>
+            </div>
+             <div>
+             </div>
+            <button id="btns" type="button" class="btn btn-primary btn-sm btn-block">注册</button> 
+            <button id="callback" type="button" class="btn btn-primary btn-sm btn-block">取消</button> 
+        </div>
+     </div>
+     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+    //   var addnum = '';  
+   $(function(){
+        var inputs = [...document.querySelectorAll('.input')];
+        var len = inputs.length;
+            for(let i = 0;i<len-1;i++){
+                 inputs[i].addEventListener('input',function(){
+                     $(this).siblings('#error').css({
+                           display:'none'
+                     })
+                 })
+            }
+        $('#callback').on('click',function(){
+            window.location.href='index.html';
+        })
+    
+        $('#btns').on('click',function(){
+            
+            let val1 = $('.user').val();
+            let psd = $('.psd').val();
+            let repsd = $('.repsd').val();
+            let redes = $('#sex').val();
+           
+            if(!val1){
+                $('.user').siblings('#error').css('display','block').text('账号输入不能为空');
+                return false;
+            }else{
+                  if(!(/^[a-z0-9]{9,14}$/.test(val1))){
+                     
+                    $('.user').siblings('#error').css('display','block').text('用户名以字母开头由9-12个字符组成,不可以使用特殊符号');
+                    return false;
+                  }else{
+                    $('.user').siblings('#error').css('display','none'); 
+                  }
+            }
+            if(!psd){
+                $('.psd').siblings('#error').css('display','block').text('密码输入不能为空');
+                return false;
+            }else{
+                if(!(/^[0-9]{9,12}$/.test(psd))){
+                    $('.psd').siblings('#error').css('display','block').text('密码以字母,数字9-14个字符组成'); 
+                    // return false; 
+                }  
+            }
+            if(psd!=repsd){
+                $('.repsd').siblings('#error').css('display','block').text('两次密码不一样');
+                return false;
+    
+            }
+    
+            if(!repsd){
+                // $('.repsd').siblings('#error').css('display','block');
+                $('.repsd').siblings('#error').css('display','block').text('请再次输入密码');
+                return false;
+            }else{
+                
+            }
+            $.ajax({
+                   
+                   url:'./setusers.php',
+                   type:"POST",
+                   data: `name=${val1}&&psd=${psd}&&sex=${redes}`,
+                  
+                   success : function(result) {
+                       alert('恭喜你！注册成功！！！');
+                       window.location.href='index.html';
+                   },
+                  
+                   error : function(e){
+                       console.log(e.status);
+                       console.log(e.responseText);
+                   }
+               }) 
+     
+        })
+    })
+    
+    </script>
+</body>
+</html>

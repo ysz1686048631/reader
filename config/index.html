@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style2.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+</head>
+<style>
+body{
+    overflow-y: hidden;
+}
+.loading{
+    width: 5rem;
+    height: 3rem;
+    background: rgba(102, 101, 101, 0.404);
+    margin: 0 auto;
+    position: absolute;
+    bottom:15rem;
+    left: 50%;
+    margin-left:-2.5rem;
+    transition: all 0.5s ease-in 0s; 
+    padding-top: .8rem;
+    border-radius: .2rem;
+    display: none;
+    
+}
+.load{
+    /* display: inline-block; */
+    width: 2rem;
+    height: 2rem;
+    border:.2rem solid transparent;
+    border-left:.2rem solid springgreen;
+    border-right:.2rem solid springgreen;
+    margin: 0 auto;
+    border-radius: 2rem;
+    animation: loading 1.5s infinite;
+    
+
+}
+
+@-webkit-keyframes loading {
+  from {
+    -webkit-transform: rotate(0deg) translateZ(0);
+  }
+  to {
+    -webkit-transform: rotate(360deg) translateZ(0);
+  }
+}
+</style>
+<body>
+      <div class="containter">
+            <div class="header">
+                LOGO
+            </div>
+            <div class="request">
+                  <form>
+                      <span><input id="name" type="text" name="name" placeholder="用户名"></span>
+                      <span><input id="pwd" type="text" name="password" placeholder="密码"></span>
+                      <span id="error" style="color: red;font-size: .8rem;"></span>
+                      <span><input class="btn" type="button" name="password" value="登陆"></span>
+                      <span id="foot"><a id="zhuce" href="/setuser.html">注册</a>|<a id="forgent" href="#">忘记密码!</a></span>
+                  </form> 
+                
+                 
+            </div>
+           
+      </div> 
+       <div class="loading">
+                <p class="load"></p>   
+           </div>
+</body>
+
+
+<script>
+    document.onmousedown = function(){
+				if(event.button == 2){
+					alert("本站已禁用鼠标右击");
+					return false;
+				}
+			}
+   
+    $(function(){
+        let str = '你在电脑前看这段文字，\n写文字的人对你说:\nN年前你来到了这个世界，\nN年后你想改变世界。\n期待你脚踏祥云，\n与自己的代码一起改变世界。\n———选自百度彩蛋💗'
+            console.log(`%c${str}`,"font-size:20px;color:#f40");
+            console.log("%c🔥 开发时间较短，Bug不可避免🔥 ","font-size:26px;color:#f40");
+         $('#forgent').on('click',function(){
+             alert('请联系管理员');
+         })
+         $('#name').focus(()=>{
+            $('#error').html('用户名不正确');
+         })
+         $('.btn').click(function(){
+             var username = $('#name').val();
+             var password = $('#pwd').val();
+             if(username==''||password==''){
+                $('#error').html('用户名和密码不能为空');
+                return false;
+             }
+             var load = document.getElementsByClassName('loading')[0];
+             load.style.display="block";
+            
+             $.ajax({
+                 url:'login.php',
+                 type:"POST",
+                 data: `username=${username}&&password=${password}`,
+                 success:function(result){
+                   
+                      if(result=='true'){
+                         
+                        setTimeout(function(){
+                              var storage=window.localStorage;
+                              storage["name"]=username;
+                              var animal = localStorage.getItem("name");
+                            
+                              window.location.href="dome.html";
+                              },2000);
+                         
+                      }else{
+                          $('#error').html('用户名或着密码输入错误');
+                       
+                      }
+                    
+                    
+                 },
+                
+             })
+
+         })
+    })
+</script>
+
+</html>

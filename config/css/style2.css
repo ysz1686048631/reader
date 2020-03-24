@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+body{
+   
+    overflow: hidden;
+}
+.containter{
+    margin: 0 auto;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+     width: 100%;
+     height: 100%;
+     background:url('/img/bg.jpg') no-repeat;
+     background-size: 100%;
+    /* background: linear-gradient(to bottom,rgb(91, 91, 240),rgb(236, 148, 148)); */
+   
+}
+.containter .header{
+    width: 100%;
+    height: 16.5rem;
+    line-height:18.5rem;
+    text-align: center;
+    font-size: 2.0em;
+    color: #fff;
+
+    
+}
+.containter .request{
+    width: 100%;
+    margin: 0 auto;
+   
+   
+    border-radius: 20px 20px 0 0;
+
+    /* box-shadow: 0 0 6px .1px rgb(26, 26, 26); */
+}
+.containter .request form{
+     
+     display: flex;
+     flex-direction:column;
+     justify-content: center;
+     align-items: center;
+     height: 100%;
+     margin-bottom:5rem;
+     
+}
+.containter .request form span:nth-of-type(1)::before{
+    content: "";
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url('/img/yonghu.svg') no-repeat;
+    background-size: 100% 100%;
+    display:inline-block;
+    vertical-align: middle;
+
+}
+.containter .request form span:nth-of-type(2)::before{
+    content: "";
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url('/img/mima.svg') no-repeat;
+    background-size: 100% 100%;
+    display:inline-block;
+    vertical-align: middle;
+
+}
+.containter .request form input::placeholder{
+    color: #fff;
+}
+.containter .request form input{
+     width: 13rem;
+     height: 2.0rem;
+     border: transparent;
+     border-bottom:1px solid #fff;
+     background: transparent;
+     outline-style: none;
+     margin:1.0rem .8rem;
+     font-size:1.0rem;
+     
+}
+.containter .request form span .btn{
+    width:15rem;
+    height: 2.5rem;
+    background: linear-gradient(to right,rgb(91, 91, 240),rgb(236, 148, 148));
+    border-radius: 2.4rem;
+    cursor: pointer;
+    color:#fff;
+    border: transparent;
+}
+
+.containter .request form #foot{
+    display: inline-block;
+    width: 100%;
+     position: absolute;
+     bottom: 5rem;
+     color: rgb(255, 254, 254);
+}
+.containter .request form #foot{
+    display: inline-block;
+    width: 100%;
+    height: 2rem;
+   
+    text-align: center;
+   
+}
+.containter .request form #foot a{
+    color: #fff;
+    margin: 0 1rem;
+}
+.containter .request form span:nth-of-type(3){
+       color: red;
+       font-size: .8rem;   
+}

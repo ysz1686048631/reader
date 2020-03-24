@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>dome</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1595347_f9iibug54g.css">
+  </head>
+  <body onload="RunOnBeforeUnload()" oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" oncopy="document.selection.empty()" onbeforecopy="return false">
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script>
+    function RunOnBeforeUnload() {window.onbeforeunload = function(){ return '将丢失未保存的数据!'; } }
+     document.onmousedown = function(){
+				if(event.button == 2){
+					alert("本站限制该操作");
+					return false;
+				}
+      }
+      document.onkeydown=function (e){
+      var currKey=0,evt=e||window.event;
+        currKey=evt.keyCode||evt.which||evt.charCode;
+        if (currKey == 123) {
+            window.event.cancelBubble = true;
+            window.event.returnValue = false;
+    }
+}
+    </script>
+</html>
